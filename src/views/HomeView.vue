@@ -207,6 +207,7 @@ const validateReason = (blur) => {
       <Column field="isAustralian" header="Australian Resident"></Column>
       <Column field="gender" header="Gender"></Column>
       <Column field="reason" header="Reason"></Column>
+      <Column field="suburb" header="Suburb"></Column>
     </DataTable>
   </div>
 
@@ -227,6 +228,7 @@ const validateReason = (blur) => {
           </li>
           <li class="list-group-item">Gender: {{ card.gender }}</li>
           <li class="list-group-item">Reason: {{ card.reason }}</li>
+          <li class="list-group-item">Suburb: {{ card.suburb }}</li>
         </ul>
       </div>
     </div>
