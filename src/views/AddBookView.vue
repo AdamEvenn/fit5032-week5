@@ -1,6 +1,5 @@
 <template>
   <div>
-    <BookList />
     <h1>Add Book</h1>
     <form @submit.prevent="addBook">
       <div>
@@ -20,7 +19,7 @@
 import { ref } from 'vue'
 import db from '../firebase/init.js'
 import { collection, addDoc } from 'firebase/firestore'
-import BookList from '@/components/BookList.vue'
+import router from '@/router'
 
 const isbn = ref('')
 const name = ref('')
@@ -39,6 +38,7 @@ const addBook = async () => {
         isbn.value = ''
         name.value = ''
         alert('Book added successfully!')
+        router.push('Booklist')
     } catch (error) {
         console.error('Error adding book: ', error)
     }

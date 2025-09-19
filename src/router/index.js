@@ -11,6 +11,7 @@ import AdminPage from '@/views/AdminPage.vue'
 import UserPage from '@/views/UserPage.vue'
 import authenticatedRole from '@/role'
 import AddBookView from '@/views/AddBookView.vue'
+import BookList from '@/components/BookList.vue'
 
 const routes = [
   {
@@ -62,6 +63,11 @@ const routes = [
     path: '/addbook',
     name: 'Addbook',
     component: AddBookView
+  },
+  {
+    path: '/booklist',
+    name: 'Booklist',
+    component: BookList
   }
 ]
 
@@ -71,7 +77,7 @@ const router = createRouter({
 })
 
 router.beforeEach((to, from, next) => {
-    if (to.name !== 'Login' && to.name !== 'Firebaselogin' && to.name !== 'Firebaseregister' && !isAuthenticated.value && to.name !== 'Home' && to.name !== 'Addbook') {
+    if (to.name !== 'Login' && to.name !== 'Firebaselogin' && to.name !== 'Firebaseregister' && !isAuthenticated.value && to.name !== 'Home' && to.name !== 'Addbook' && to.name !== 'Booklist') {
       next({ name: 'Login' })
     } else if (isAuthenticated.value && authenticatedRole === 'admin'){
       next({ name: 'AdminPage' })
