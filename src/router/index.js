@@ -5,6 +5,11 @@ import LoginView from '../views/LoginView.vue'
 import AccessDenied from '../views/AccessDenied.vue'
 import LoginSuccess from '../views/LoginSuccess.vue'
 import isAuthenticated from '@/authenticate'
+import FirebaseSigninView from '@/views/FirebaseSigninView.vue'
+import FirebaseRegisterView from '@/views/FirebaseRegisterView.vue'
+import AdminPage from '@/views/AdminPage.vue'
+import UserPage from '@/views/UserPage.vue'
+import authenticatedRole from '@/role'
 
 const routes = [
   {
@@ -21,6 +26,26 @@ const routes = [
     path: '/login',
     name: 'Login',
     component: LoginView
+  },
+    {
+    path: '/firebaselogin',
+    name: 'Firebaselogin',
+    component: FirebaseSigninView
+  },
+  {
+    path: '/firebaseregister',
+    name: 'Firebaseregister',
+    component: FirebaseRegisterView
+  },
+  {
+    path: '/adminpage',
+    name: 'Adminpage',
+    component: AdminPage
+  },
+  {
+    path: '/userpage',
+    name: 'Userpage',
+    component: UserPage
   },
   {
     path: '/loginsuccess',
@@ -40,7 +65,13 @@ const router = createRouter({
 })
 
 router.beforeEach((to, from, next) => {
-    if (to.name !== 'Login' && !isAuthenticated.value) next({ name: 'Login' })
+    if (to.name !== 'Login' && to.name !== 'Firebaselogin' && to.name !== 'Firebaseregister' && !isAuthenticated.value) {
+      next({ name: 'Login' })
+    } else if (isAuthenticated.value && authenticatedRole === 'admin'){
+      next({ name: 'AdminPage' })
+    } else if (isAuthenticated.value && authenticatedRole === 'user'){
+      next({ name: 'UserPage' })
+    }
     else next()
 })
 
