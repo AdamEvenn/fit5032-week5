@@ -10,6 +10,7 @@ import FirebaseRegisterView from '@/views/FirebaseRegisterView.vue'
 import AdminPage from '@/views/AdminPage.vue'
 import UserPage from '@/views/UserPage.vue'
 import authenticatedRole from '@/role'
+import AddBookView from '@/views/AddBookView.vue'
 
 const routes = [
   {
@@ -56,6 +57,11 @@ const routes = [
     path: '/accessdenied',
     name: 'AccessDenied',
     component: AccessDenied
+  },
+  {
+    path: '/addbook',
+    name: 'Addbook',
+    component: AddBookView
   }
 ]
 

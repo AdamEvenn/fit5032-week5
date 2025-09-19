@@ -12,7 +12,6 @@ const logout = () => {
   const auth = getAuth()
   signOut(auth).then(() => {
     isAuthenticated.value = false
-    authenticatedRole.value = ""
     console.log("Sign out succeed")
   }).catch((error) => {
     console.log("sign out failed", error)
@@ -46,6 +45,9 @@ const logout = () => {
         </li>
         <li class="nav-item">
           <button v-if="isAuthenticated" class="nav-link" @click="logout">Logout</button>
+        </li>
+        <li class="nav-item">
+          <router-link to="/addbook" class="nav-link" active-class="active">Addbook</router-link>
         </li>
       </ul>
     </header>
