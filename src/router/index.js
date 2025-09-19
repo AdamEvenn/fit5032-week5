@@ -65,7 +65,7 @@ const router = createRouter({
 })
 
 router.beforeEach((to, from, next) => {
-    if (to.name !== 'Login' && to.name !== 'Firebaselogin' && to.name !== 'Firebaseregister' && !isAuthenticated.value) {
+    if (to.name !== 'Login' && to.name !== 'Firebaselogin' && to.name !== 'Firebaseregister' && !isAuthenticated.value && to.name !== 'Home') {
       next({ name: 'Login' })
     } else if (isAuthenticated.value && authenticatedRole === 'admin'){
       next({ name: 'AdminPage' })

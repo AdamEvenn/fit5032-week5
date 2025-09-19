@@ -5,9 +5,18 @@ import { useRouter } from 'vue-router'
 const router = useRouter()
 
 import isAuthenticated from '@/authenticate'
+import { getAuth, signOut} from 'firebase/auth'
+import authenticatedRole from '@/role'
 
 const logout = () => {
-  isAuthenticated.value = false
+  const auth = getAuth()
+  signOut(auth).then(() => {
+    isAuthenticated.value = false
+    authenticatedRole.value = ""
+    console.log("Sign out succeed")
+  }).catch((error) => {
+    console.log("sign out failed", error)
+  })
   router.push('/login')
 }
 </script>
